@@ -1,0 +1,19 @@
+- name: nginx_sites
+  hosts: nginx_sites
+  become: True
+  roles:
+    - nginx_install
+    - nginx_sites_config
+
+- name: nginx_lb
+  hosts: nginx_lb
+  become: True
+  roles:
+    - nginx_install
+    - nginx_lb
+
+- name: postgresql
+  hosts: postgresql
+  become: True
+  roles:
+    - postgresql

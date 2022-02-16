@@ -1,0 +1,7 @@
+[nginx_sites]
+nginx1 ansible_host=192.168.122.61
+nginx2 ansible_host=192.168.122.206
+[nginx_lb]
+nginxlb ansible_host=192.168.122.2
+[postgresql]
+postgresql_1 = ansible_host=192.168.122.66 

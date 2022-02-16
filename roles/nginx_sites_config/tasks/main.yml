@@ -1,0 +1,8 @@
+- name: copy nginx.conf
+  copy: src=files/nginx.conf dest=/etc/nginx/sites-available/default
+  notify: nginx reload
+
+- name: copy nginx.html
+  template: src=templates/index.html.j2 dest=/var/www/html/index.html
+
+

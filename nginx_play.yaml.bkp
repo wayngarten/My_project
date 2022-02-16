@@ -1,0 +1,25 @@
+- name: Nginx_project
+  hosts: nginx
+  become: True
+  roles:
+    -nginx_sites
+
+  tasks:
+    - name: install nginx
+      apt: name=nginx update_cache=yes
+      notify: restart nginx
+
+    - name: copy nginx.conf
+      copy: src=files/nginx.conf dest=/etc/nginx/sites-available/default
+      notify: nginx reload
+
+    - name: copy nginx.html  
+      template: src=templates/index.html.j2 dest=/var/www/html/index.html
+
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
+
+    - name: nginx reload
+      shell: "/usr/sbin/nginx -s reload"
+    
